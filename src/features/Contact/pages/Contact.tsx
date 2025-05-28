@@ -12,7 +12,7 @@ function Contact() {
   };
 
   return (
-    <div className='flex flex-col gap-10 bg-[#1f1f1f] border-[1px] border-[#383838] rounded-xl w-full p-10'>
+    <div className='flex flex-col gap-10 bg-[#1f1f1f] border-[1px] border-[#383838] rounded-xl w-full p-10 min-h-full'>
       <div className='relative max-w-fit'>
         <h2 className='text-white font-bold text-4xl'>Contact</h2>
         <p className='absolute bottom-[-50%] w-[40%] h-2 bg-gradient-to-br from-yellow-200 to-yellow-600 rounded-full'></p>

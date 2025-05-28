@@ -1,0 +1,68 @@
+import { useState } from 'react';
+
+import projectImg from '../../../assets/image.png';
+import type { CategoriesType, Project } from '../../../types/ProjectsType';
+import ProjectCard from '../components/ProjectCard';
+
+const categories: CategoriesType[] = [
+  'All',
+  'Website',
+  'Package',
+  'Extension',
+  'PWA',
+];
+
+const projectData: Project[] = [
+  {
+    title: 'Todo',
+    image: projectImg,
+    category: 'Website',
+  },
+  {
+    title: 'Todo',
+    image: projectImg,
+    category: 'Website',
+  },
+  {
+    title: 'Todo',
+    image: projectImg,
+    category: 'Website',
+  },
+];
+
+function Projects() {
+  const [category, setCategory] = useState<CategoriesType>('All');
+
+  return (
+    <div className='flex flex-col gap-10 bg-[#1f1f1f] border-[1px] border-[#383838] rounded-xl w-full p-10 min-h-full'>
+      <div className='relative max-w-fit'>
+        <h2 className='text-white font-bold text-4xl'>Projects</h2>
+        <p className='absolute bottom-[-50%] w-[40%] h-2 bg-gradient-to-br from-yellow-200 to-yellow-600 rounded-full'></p>
+      </div>
+      <ul className='w-full flex flex-row gap-5 mt-5'>
+        {categories.map((value) => {
+          return (
+            <li
+              className={`${category === value ? 'text-yellow-400' : 'text-slate-200'} font-medium text-lg`}
+            >
+              <button onClick={() => setCategory(value)}>{value}</button>
+            </li>
+          );
+        })}
+      </ul>
+      <div className='grid grid-cols-autofill-250 gap-5'>
+        {projectData.map((project) => {
+          return (
+            <ProjectCard
+              title={project.title}
+              image={project.image}
+              category={project.category}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default Projects;

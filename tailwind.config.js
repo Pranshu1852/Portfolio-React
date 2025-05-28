@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         montserrat: 'Montserrat',
       },
+      gridTemplateColumns: {
+        'autofill-250': 'repeat(auto-fill, minmax(250px, 1fr))',
+      },
     },
   },
   plugins: [],
