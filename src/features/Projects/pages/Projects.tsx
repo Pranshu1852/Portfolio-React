@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import projectImg from '../../../assets/image.png';
 import type { CategoriesType, Project } from '../../../types/ProjectsType';
@@ -39,7 +40,7 @@ function Projects() {
         <h2 className='text-white font-bold text-4xl'>Projects</h2>
         <p className='absolute bottom-[-50%] w-[40%] h-2 bg-gradient-to-br from-yellow-200 to-yellow-600 rounded-full'></p>
       </div>
-      <ul className='w-full flex flex-row gap-5 mt-5'>
+      <ul className='w-full flex flex-row flex-wrap gap-5 mt-5'>
         {categories.map((value) => {
           return (
             <li
@@ -50,14 +51,16 @@ function Projects() {
           );
         })}
       </ul>
-      <div className='grid grid-cols-autofill-250 gap-5'>
+      <div className='grid grid-cols-autofill-200 gap-5'>
         {projectData.map((project) => {
           return (
-            <ProjectCard
-              title={project.title}
-              image={project.image}
-              category={project.category}
-            />
+            <Link to='/projects/123'>
+              <ProjectCard
+                title={project.title}
+                image={project.image}
+                category={project.category}
+              />
+            </Link>
           );
         })}
       </div>

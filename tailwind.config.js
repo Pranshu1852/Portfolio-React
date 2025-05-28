@@ -7,7 +7,7 @@ export default {
         montserrat: 'Montserrat',
       },
       gridTemplateColumns: {
-        'autofill-250': 'repeat(auto-fill, minmax(250px, 1fr))',
+        'autofill-200': 'repeat(auto-fill, minmax(200px, 1fr))',
       },
     },
   },
