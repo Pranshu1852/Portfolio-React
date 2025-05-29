@@ -3,7 +3,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import XIcon from '@mui/icons-material/X';
 import { useState } from 'react';
 
-import avatar from '../assets/avatar-1.png';
 import calenderImg from '../assets/calender.svg';
 import downArrowImg from '../assets/downArrow.svg';
 import mailImg from '../assets/mail.svg';
@@ -14,14 +13,11 @@ const Sidebar = () => {
 
   return (
     <>
-      <div
-        className='relative flex flex-col justify-center items-center gap-4 p-10 bg-[#1e1e1e] border border-[#383838] rounded-xl
-      lg:sticky lg:top-16 lg:max-h-max lg:h-full lg:mb-0 lg:pb-8 lg:pt-16'
-      >
+      <div className='relative flex flex-col left-0 box-border items-center gap-4 p-10 bg-[#1e1e1e] border border-[#383838] rounded-xl lg:min-h-[calc(100vh-8rem)] lg:max-h-[calc(100vh-8rem)] overflow-auto no-scrollbar lg:mb-0 lg:py-16'>
         <div className='flex flex-row w-full max-w-[600px] items-center gap-5 lg:flex-col'>
           <div className='bg-gradient-to-br from-[#404040] to-[#303030] rounded-xl lg:rounded-[30px]'>
             <img
-              src={avatar}
+              src='https://vidhuraneethika.vercel.app/assets/img/avatar/avatar3.webp'
               alt='avatar image'
               className='w-20 md:w-[150px]'
             />
@@ -52,7 +48,7 @@ const Sidebar = () => {
         </div>
 
         <div
-          className={`${isOpen ? 'block' : 'hidden'} lg:block w-full max-w-[600px]`}
+          className={`${isOpen ? 'flex' : 'hidden'} lg:flex flex-col w-full h-full max-w-[600px]`}
         >
           <div className='w-full h-[1px] bg-[#383838] my-4 md:mb-8'></div>
 
@@ -100,7 +96,7 @@ const Sidebar = () => {
 
           <div className='w-full h-px bg-[#383838] my-4 md:my-8 lg:opacity-0'></div>
 
-          <ul className='flex justify-start items-center gap-4 pb-1 pl-2 lg:justify-center'>
+          <ul className='flex h-full justify-start items-center gap-4 pb-1 pl-2 lg:justify-center'>
             <li>
               <a href='#' className='hover:opacity-80'>
                 <GitHubIcon
