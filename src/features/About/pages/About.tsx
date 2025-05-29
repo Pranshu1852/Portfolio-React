@@ -67,7 +67,7 @@ function About() {
         <div className='flex items-center gap-4 mb-6'>
           <div className='relative bg-gradient-to-br from-[#404040] to-transparent w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 shadow-lg'>
             <div className='absolute inset-px bg-[#212121] rounded-xl' />
-            <img className='w-5 h-5 z-10' src={bookImg} />
+            <img className='w-5 h-5 z-10' src={bookImg} alt='book logo' />
           </div>
           <h3 className='text-2xl font-semibold text-white'>Education</h3>
         </div>
@@ -87,7 +87,11 @@ function About() {
         <div className='flex items-center gap-4 mb-6'>
           <div className='relative bg-gradient-to-br from-[#404040] to-transparent w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 shadow-lg'>
             <div className='absolute inset-px bg-[#212121] rounded-xl' />
-            <img className='w-5 h-5 z-10' src={briefCaseImg} />
+            <img
+              className='w-5 h-5 z-10'
+              src={briefCaseImg}
+              alt='brief case logo'
+            />
           </div>
           <h3 className='text-2xl font-semibold text-white'>Experience</h3>
         </div>

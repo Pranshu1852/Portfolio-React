@@ -7,7 +7,7 @@ function SkillBar({ name, percentage }: SkillBarProps) {
   return (
     <div className='flex flex-col gap-2'>
       <div className='flex flex-row items-center justify-between'>
-        <h5 className='text-sm font-medium text-white'>{name}</h5>
+        <h2 className='text-sm font-medium text-white'>{name}</h2>
         <span className='text-xs font-light text-[#D4D4D8]'>{percentage}%</span>
       </div>
       <div className='w-full h-2 bg-[#383838] rounded-xl'>

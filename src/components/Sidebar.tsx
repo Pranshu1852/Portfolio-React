@@ -57,7 +57,7 @@ const Sidebar = () => {
             <div className='flex flex-row items-center gap-5'>
               <div className='relative bg-gradient-to-br from-[#404040] to-transparent w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 shadow-lg'>
                 <div className='absolute inset-px bg-[#212121] rounded-xl' />
-                <img className='w-5 h-5 z-10' src={mailImg} />
+                <img className='w-5 h-5 z-10' src={mailImg} alt='mail logo' />
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Email</p>
@@ -73,7 +73,11 @@ const Sidebar = () => {
             <div className='flex flex-row items-center gap-5'>
               <div className='relative bg-gradient-to-br from-[#404040] to-transparent w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 shadow-lg'>
                 <div className='absolute inset-px bg-[#212121] rounded-xl' />
-                <img className='w-5 h-5 z-10' src={phoneImg} />
+                <img
+                  className='w-5 h-5 z-10'
+                  src={phoneImg}
+                  alt='phone image'
+                />
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Phone</p>
@@ -86,7 +90,11 @@ const Sidebar = () => {
             <div className='flex flex-row items-center gap-5'>
               <div className='relative bg-gradient-to-br from-[#404040] to-transparent w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 shadow-lg'>
                 <div className='absolute inset-px bg-[#212121] rounded-xl' />
-                <img className='w-5 h-5 z-10' src={calenderImg} />
+                <img
+                  className='w-5 h-5 z-10'
+                  src={calenderImg}
+                  alt='calender logo'
+                />
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Date Of Birth</p>
@@ -99,7 +107,7 @@ const Sidebar = () => {
 
           <ul className='flex h-full justify-start items-center gap-4 pb-1 pl-2 lg:justify-center'>
             <li>
-              <a href='#' className='hover:opacity-80'>
+              <a href='#' className='hover:opacity-80' aria-label='github link'>
                 <GitHubIcon
                   sx={{
                     color: '#d6d6d6',
@@ -108,7 +116,11 @@ const Sidebar = () => {
               </a>
             </li>
             <li>
-              <a href='#' className='hover:opacity-80'>
+              <a
+                href='#'
+                className='hover:opacity-80'
+                aria-label='linkedin link'
+              >
                 <LinkedInIcon
                   sx={{
                     color: '#d6d6d6',
@@ -117,7 +129,11 @@ const Sidebar = () => {
               </a>
             </li>
             <li>
-              <a href='#' className='hover:opacity-80'>
+              <a
+                href='#'
+                className='hover:opacity-80'
+                aria-label='twitter link'
+              >
                 <XIcon
                   sx={{
                     color: '#d6d6d6',
