@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
+import NotFound from './features/About/components/NotFound';
 import About from './features/About/pages/About';
 import Contact from './features/Contact/pages/Contact';
 import ProjectDetail from './features/Projects/pages/ProjectDetail';
@@ -15,6 +16,7 @@ function App() {
         <Route path='/projects/:id' element={<ProjectDetail />} />
         <Route path='/contact' element={<Contact />} />
       </Route>
+      <Route path='/*' element={<NotFound />} />
     </Routes>
   );
 }
