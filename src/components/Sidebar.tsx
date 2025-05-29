@@ -3,6 +3,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import XIcon from '@mui/icons-material/X';
 import { useState } from 'react';
 
+import avatar from '../assets/avatar.webp';
 import calenderImg from '../assets/calender.svg';
 import downArrowImg from '../assets/downArrow.svg';
 import mailImg from '../assets/mail.svg';
@@ -17,7 +18,7 @@ const Sidebar = () => {
         <div className='flex flex-row w-full max-w-[600px] items-center gap-5 lg:flex-col'>
           <div className='bg-gradient-to-br from-[#404040] to-[#303030] rounded-xl lg:rounded-[30px]'>
             <img
-              src='https://vidhuraneethika.vercel.app/assets/img/avatar/avatar3.webp'
+              src={avatar}
               alt='avatar image'
               className='w-20 md:w-[150px]'
             />
