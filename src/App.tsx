@@ -1,14 +1,21 @@
+import { lazy, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router-dom';
 
 import ErrorFallBack from './components/ErrorFallback';
+import Loading from './components/Loading';
 import NotFound from './components/NotFound';
 import About from './features/About/pages/About';
-import Contact from './features/Contact/pages/Contact';
-import ProjectDetail from './features/Projects/pages/ProjectDetail';
-import Projects from './features/Projects/pages/Projects';
 import MainLayout from './layouts/MainLayout';
 import { sharedRef } from './utils/sharedRef';
+
+const ProjectsComponent = lazy(
+  () => import('./features/Projects/pages/Projects')
+);
+const ProjectDetailComponent = lazy(
+  () => import('./features/Projects/pages/ProjectDetail')
+);
+const ContactComponent = lazy(() => import('./features/Contact/pages/Contact'));
 
 function App() {
   return (
@@ -20,15 +27,17 @@ function App() {
         }
       }}
     >
-      <Routes>
-        <Route path='/' element={<MainLayout />}>
-          <Route index element={<About />} />
-          <Route path='/projects' element={<Projects />} />
-          <Route path='/projects/:id' element={<ProjectDetail />} />
-          <Route path='/contact' element={<Contact />} />
-        </Route>
-        <Route path='/*' element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path='/' element={<MainLayout />}>
+            <Route index element={<About />} />
+            <Route path='/projects' element={<ProjectsComponent />} />
+            <Route path='/projects/:id' element={<ProjectDetailComponent />} />
+            <Route path='/contact' element={<ContactComponent />} />
+          </Route>
+          <Route path='/*' element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </ErrorBoundary>
   );
 }
