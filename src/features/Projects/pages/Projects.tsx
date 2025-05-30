@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useErrorBoundary } from 'react-error-boundary';
 import { Link } from 'react-router-dom';
 
+import Loading from '../../../components/Loading';
+import useFetch from '../../../hooks/useFetch';
 import { getProjects } from '../../../services/projectApi';
 import type { CategoriesType, ProjectData } from '../../../types/ProjectsType';
 import ProjectCard from '../components/ProjectCard';
@@ -15,16 +18,14 @@ const categories: CategoriesType[] = [
 
 function Projects() {
   const [category, setCategory] = useState<CategoriesType>('All');
-  const [projectArray, setProjectArray] = useState<ProjectData[]>([]);
-
-  async function getAllProjects() {
-    const projects = await getProjects(category);
-    setProjectArray(projects.data);
-  }
-
-  useEffect(() => {
-    getAllProjects();
+  const { data, isError, isLoading } = useFetch<ProjectData[]>(async () => {
+    return await getProjects(category);
   }, [category]);
+  const { showBoundary } = useErrorBoundary();
+
+  if (isError) {
+    showBoundary('Something Went Wrong.');
+  }
 
   return (
     <div className='flex flex-col gap-10 w-full pb-24 md:pb-10 p-10'>
@@ -44,23 +45,26 @@ function Projects() {
           );
         })}
       </ul>
-      {projectArray.length === 0 ? (
+      {isLoading ? (
+        <Loading />
+      ) : data && data.length === 0 ? (
         <h2 className='h-full text-3xl flex items-center font-semibold text-yellow-400'>
           Coming Soon...
         </h2>
       ) : (
         <div className='grid grid-cols-autofill-200 gap-5'>
-          {projectArray.map((project, index) => {
-            return (
-              <Link key={index} to={`/projects/${project.documentId}`}>
-                <ProjectCard
-                  title={project.title}
-                  image={`${import.meta.env.VITE_STRAPI_URL}${project.image.url}`}
-                  category={project.category.title}
-                />
-              </Link>
-            );
-          })}
+          {data &&
+            data.map((project, index) => {
+              return (
+                <Link key={index} to={`/projects/${project.documentId}`}>
+                  <ProjectCard
+                    title={project.title}
+                    image={`${import.meta.env.VITE_STRAPI_URL}${project.image.url}`}
+                    category={project.category.title}
+                  />
+                </Link>
+              );
+            })}
         </div>
       )}
     </div>
