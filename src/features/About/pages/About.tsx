@@ -1,3 +1,5 @@
+import { useOutletContext } from 'react-router-dom';
+
 import bookImg from '../../../assets/book.svg';
 import briefCaseImg from '../../../assets/briefCase.svg';
 import SkillBar from '../components/SkillBar';
@@ -49,20 +51,15 @@ const skillsData = [
 ];
 
 function About() {
+  const { aboutme } = useOutletContext<{ aboutme: string }>();
+
   return (
     <div className='flex flex-col gap-10 w-full pb-24 md:pb-10 p-10 '>
       <div className='relative max-w-fit'>
         <h2 className='text-white font-bold text-4xl'>About Me</h2>
         <p className='absolute bottom-[-50%] w-[40%] h-2 bg-gradient-to-br from-yellow-200 to-yellow-600 rounded-full'></p>
       </div>
-      <p className='text-slate-200 text-lg'>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ab
-        rem quam incidunt excepturi quibusdam animi ex doloremque nobis magnam,
-        aperiam blanditiis veniam tenetur libero earum architecto corporis.
-        Facere, dolor? Nisi ratione perspiciatis, in nesciunt dicta dolore
-        reiciendis repudiandae. Excepturi ipsa esse voluptatibus doloribus
-        sequi?
-      </p>
+      <p className='text-slate-200 text-lg'>{aboutme}</p>
       <div>
         <div className='flex items-center gap-4 mb-6'>
           <div className='relative bg-gradient-to-br from-[#404040] to-transparent w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 shadow-lg'>

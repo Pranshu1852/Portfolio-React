@@ -9,7 +9,15 @@ import downArrowImg from '../assets/downArrow.svg';
 import mailImg from '../assets/mail.svg';
 import phoneImg from '../assets/phone.svg';
 
-const Sidebar = () => {
+interface SidebarProps {
+  name: string;
+  profession: string;
+  email: string;
+  phone: string;
+  birthday: string;
+}
+
+function Sidebar({ name, profession, email, phone, birthday }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -26,10 +34,10 @@ const Sidebar = () => {
 
           <div className='flex flex-col gap-4'>
             <h1 className='text-stone-300 text-lg md:text-2xl font-medium lg:text-center'>
-              Pranshu Patel
+              {name}
             </h1>
             <p className='text-stone-100 bg-[#2b2b2b] text-sm px-4 py-2 rounded-lg'>
-              Software Developer
+              {profession}
             </p>
           </div>
 
@@ -61,11 +69,8 @@ const Sidebar = () => {
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Email</p>
-                <a
-                  href='mailto:pranshup977@gmail.com'
-                  className='text-stone-100'
-                >
-                  pranshup977@gmail.com
+                <a href={`mailto:${email}`} className='text-stone-100'>
+                  {email}
                 </a>
               </div>
             </div>
@@ -81,8 +86,8 @@ const Sidebar = () => {
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Phone</p>
-                <a href='tel:+917046679077' className='text-stone-100'>
-                  +91 7046679077
+                <a href={`tel:${phone}`} className='text-stone-100'>
+                  {phone}
                 </a>
               </div>
             </div>
@@ -98,7 +103,7 @@ const Sidebar = () => {
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Date Of Birth</p>
-                <p className='text-stone-100'>May 29, 2004</p>
+                <p className='text-stone-100'>{birthday}</p>
               </div>
             </div>
           </div>
@@ -146,6 +151,6 @@ const Sidebar = () => {
       </div>
     </>
   );
-};
+}
 
 export default Sidebar;
