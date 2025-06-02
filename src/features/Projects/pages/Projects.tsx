@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
 import { Link } from 'react-router-dom';
 
-import Loading from '../../../components/Loading';
 import useFetch from '../../../hooks/useFetch';
 import { getProjects } from '../../../services/projectApi';
 import type { CategoriesType, ProjectData } from '../../../types/ProjectsType';
 import ProjectCard from '../components/ProjectCard';
+import ShimmerProjectCard from '../components/ShimmerProjectCard';
 
 const categories: CategoriesType[] = [
   'All',
@@ -46,7 +46,11 @@ function Projects() {
         })}
       </ul>
       {isLoading ? (
-        <Loading />
+        <div className='grid grid-cols-autofill-200 gap-5'>
+          {[1, 2, 3, 4].map(() => {
+            return <ShimmerProjectCard />;
+          })}
+        </div>
       ) : data && data.length === 0 ? (
         <h2 className='h-full text-3xl flex items-center font-semibold text-yellow-400'>
           Coming Soon...

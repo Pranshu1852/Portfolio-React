@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 
 import bookImg from '../../../assets/book.svg';
@@ -51,7 +52,10 @@ const skillsData = [
 ];
 
 function About() {
-  const { aboutme } = useOutletContext<{ aboutme: string }>();
+  const { isLoading, aboutme } = useOutletContext<{
+    isLoading: boolean;
+    aboutme: string | null;
+  }>();
 
   return (
     <div className='flex flex-col gap-10 w-full pb-24 md:pb-10 p-10 '>
@@ -59,7 +63,17 @@ function About() {
         <h2 className='text-white font-bold text-4xl'>About Me</h2>
         <p className='absolute bottom-[-50%] w-[40%] h-2 bg-gradient-to-br from-yellow-200 to-yellow-600 rounded-full'></p>
       </div>
-      <p className='text-slate-200 text-lg'>{aboutme}</p>
+      {isLoading ? (
+        <Skeleton
+          variant='rounded'
+          sx={{ backgroundColor: 'gray' }}
+          color='#a3a3a3'
+          height={140}
+        />
+      ) : (
+        <p className='text-slate-200 text-lg'>{aboutme}</p>
+      )}
+
       <div>
         <div className='flex items-center gap-4 mb-6'>
           <div className='relative bg-gradient-to-br from-[#404040] to-transparent w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 shadow-lg'>

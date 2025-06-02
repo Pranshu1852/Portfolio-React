@@ -1,6 +1,7 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import XIcon from '@mui/icons-material/X';
+import { Skeleton } from '@mui/material';
 import { useState } from 'react';
 
 import avatar from '../assets/avatar.webp';
@@ -10,14 +11,22 @@ import mailImg from '../assets/mail.svg';
 import phoneImg from '../assets/phone.svg';
 
 interface SidebarProps {
-  name: string;
-  profession: string;
-  email: string;
-  phone: string;
-  birthday: string;
+  isLoading: boolean;
+  name: string | null;
+  profession: string | null;
+  email: string | null;
+  phone: string | null;
+  birthday: string | null;
 }
 
-function Sidebar({ name, profession, email, phone, birthday }: SidebarProps) {
+function Sidebar({
+  isLoading,
+  name,
+  profession,
+  email,
+  phone,
+  birthday,
+}: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,12 +42,31 @@ function Sidebar({ name, profession, email, phone, birthday }: SidebarProps) {
           </div>
 
           <div className='flex flex-col gap-4'>
-            <h1 className='text-stone-300 text-lg md:text-2xl font-medium lg:text-center'>
-              {name}
-            </h1>
-            <p className='text-stone-100 bg-[#2b2b2b] text-sm px-4 py-2 rounded-lg'>
-              {profession}
-            </p>
+            {isLoading ? (
+              <>
+                <Skeleton
+                  variant='rounded'
+                  sx={{ backgroundColor: 'gray' }}
+                  height={35}
+                  width={150}
+                />
+                <Skeleton
+                  variant='rounded'
+                  sx={{ backgroundColor: 'gray' }}
+                  height={35}
+                  width={150}
+                />
+              </>
+            ) : (
+              <>
+                <h1 className='text-stone-300 text-lg md:text-2xl font-medium lg:text-center'>
+                  {name}
+                </h1>
+                <p className='text-stone-100 bg-[#2b2b2b] text-sm px-4 py-2 rounded-lg'>
+                  {profession}
+                </p>
+              </>
+            )}
           </div>
 
           <button
@@ -69,9 +97,18 @@ function Sidebar({ name, profession, email, phone, birthday }: SidebarProps) {
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Email</p>
-                <a href={`mailto:${email}`} className='text-stone-100'>
-                  {email}
-                </a>
+                {isLoading ? (
+                  <Skeleton
+                    variant='rounded'
+                    sx={{ backgroundColor: 'gray' }}
+                    height={20}
+                    width={180}
+                  />
+                ) : (
+                  <a href={`mailto:${email}`} className='text-stone-100'>
+                    {email}
+                  </a>
+                )}
               </div>
             </div>
 
@@ -86,9 +123,18 @@ function Sidebar({ name, profession, email, phone, birthday }: SidebarProps) {
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Phone</p>
-                <a href={`tel:${phone}`} className='text-stone-100'>
-                  {phone}
-                </a>
+                {isLoading ? (
+                  <Skeleton
+                    variant='rounded'
+                    sx={{ backgroundColor: 'gray' }}
+                    height={20}
+                    width={180}
+                  />
+                ) : (
+                  <a href={`tel:${phone}`} className='text-stone-100'>
+                    {phone}
+                  </a>
+                )}
               </div>
             </div>
 
@@ -103,7 +149,16 @@ function Sidebar({ name, profession, email, phone, birthday }: SidebarProps) {
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <p className='text-stone-400 font-medium'>Date Of Birth</p>
-                <p className='text-stone-100'>{birthday}</p>
+                {isLoading ? (
+                  <Skeleton
+                    variant='rounded'
+                    sx={{ backgroundColor: 'gray' }}
+                    height={20}
+                    width={180}
+                  />
+                ) : (
+                  <p className='text-stone-100'>{birthday}</p>
+                )}
               </div>
             </div>
           </div>

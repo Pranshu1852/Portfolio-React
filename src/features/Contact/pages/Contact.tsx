@@ -17,7 +17,11 @@ function Contact() {
         <h2 className='text-white font-bold text-4xl'>Contact</h2>
         <p className='absolute bottom-[-50%] w-[40%] h-2 bg-gradient-to-br from-yellow-200 to-yellow-600 rounded-full'></p>
       </div>
-      <form className='flex flex-col gap-10 mt-5'>
+      <form
+        action={`https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`}
+        method='POST'
+        className='flex flex-col gap-10 mt-5'
+      >
         <InputField
           ref={registerRef('name')}
           id='name'
