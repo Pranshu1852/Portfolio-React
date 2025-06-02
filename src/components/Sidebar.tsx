@@ -9,7 +9,7 @@ import downArrowImg from '../assets/downArrow.svg';
 import mailImg from '../assets/mail.svg';
 import phoneImg from '../assets/phone.svg';
 
-const Sidebar = () => {
+function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -146,6 +146,6 @@ const Sidebar = () => {
       </div>
     </>
   );
-};
+}
 
 export default Sidebar;
