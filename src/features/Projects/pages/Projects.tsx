@@ -63,7 +63,7 @@ function Projects() {
                 <Link key={index} to={`/projects/${project.documentId}`}>
                   <ProjectCard
                     title={project.title}
-                    image={`${import.meta.env.VITE_STRAPI_URL}${project.image.url}`}
+                    image={`${project.image.url}`}
                     category={project.category.title}
                   />
                 </Link>
