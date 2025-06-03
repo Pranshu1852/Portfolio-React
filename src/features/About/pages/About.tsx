@@ -3,58 +3,16 @@ import { useOutletContext } from 'react-router-dom';
 
 import bookImg from '../../../assets/book.svg';
 import briefCaseImg from '../../../assets/briefCase.svg';
+import type { PersonDetails } from '../../../types/ProfileType';
+import ShimmerSkillBar from '../components/ShimmerSkillBar';
+import ShimmerTimeLine from '../components/ShimmerTimeLine';
 import SkillBar from '../components/SkillBar';
 import TimeLine from '../components/TimeLine';
 
-const educationData = [
-  {
-    title: 'Grade X',
-    organization: 'Nutan Vidhya Vihar Higher Secondary School',
-    period: '2018 - 2019',
-  },
-  {
-    title: 'Grade XII',
-    organization: 'The National High School',
-    period: '2020 - 2021',
-  },
-  {
-    title: 'B.E. in Information And Communication Technology',
-    organization: 'Adani Institude of Infrastructure Engineering',
-    period: '2021 - 2025',
-  },
-];
-
-const experienceData = [
-  {
-    title: 'React Trainee',
-    organization: 'Simform Solutions',
-    period: '2025 - Present',
-  },
-];
-
-const skillsData = [
-  {
-    name: 'git / github',
-    percentage: 90,
-  },
-  {
-    name: 'HTML / CSS',
-    percentage: 95,
-  },
-  {
-    name: 'JavaScipt / TypeScript',
-    percentage: 80,
-  },
-  {
-    name: 'React',
-    percentage: 65,
-  },
-];
-
 function About() {
-  const { isLoading, aboutme } = useOutletContext<{
+  const { isLoading, personDetail } = useOutletContext<{
     isLoading: boolean;
-    aboutme: string | null;
+    personDetail: PersonDetails;
   }>();
 
   return (
@@ -71,7 +29,9 @@ function About() {
           height={140}
         />
       ) : (
-        <p className='text-slate-200 text-lg'>{aboutme}</p>
+        <p className='text-slate-200 text-lg'>
+          {personDetail ? personDetail.aboutme : 'About me not exist.'}
+        </p>
       )}
 
       <div>
@@ -83,15 +43,25 @@ function About() {
           <h3 className='text-2xl font-semibold text-white'>Education</h3>
         </div>
         <div className='ml-11'>
-          {educationData.map((item, index) => (
-            <TimeLine
-              key={index}
-              title={item.title}
-              organization={item.organization}
-              period={item.period}
-              isLast={index === educationData.length - 1}
-            />
-          ))}
+          {isLoading ? (
+            [1, 2, 3].map((_, ind) => {
+              return <ShimmerTimeLine key={ind} isLast={ind === 2} />;
+            })
+          ) : personDetail ? (
+            personDetail.education.map((item, index) => (
+              <TimeLine
+                key={index}
+                title={item.title}
+                organization={item.organization}
+                period={item.period}
+                isLast={index === personDetail.education.length - 1}
+              />
+            ))
+          ) : (
+            <p className='text-2xl font-medium text-yellow-400'>
+              No education details.
+            </p>
+          )}
         </div>
       </div>
       <div>
@@ -107,15 +77,25 @@ function About() {
           <h3 className='text-2xl font-semibold text-white'>Experience</h3>
         </div>
         <div className='ml-11'>
-          {experienceData.map((item, index) => (
-            <TimeLine
-              key={index}
-              title={item.title}
-              organization={item.organization}
-              period={item.period}
-              isLast={index === experienceData.length - 1}
-            />
-          ))}
+          {isLoading ? (
+            [1, 2, 3].map((_, ind) => {
+              return <ShimmerTimeLine key={ind} isLast={ind === 2} />;
+            })
+          ) : personDetail ? (
+            personDetail.experience.map((item, index) => (
+              <TimeLine
+                key={index}
+                title={item.title}
+                organization={item.organization}
+                period={item.period}
+                isLast={index === personDetail.experience.length - 1}
+              />
+            ))
+          ) : (
+            <p className='text-2xl font-medium text-yellow-400'>
+              No experience details.
+            </p>
+          )}
         </div>
       </div>
 
@@ -124,13 +104,23 @@ function About() {
         <div className='relative bg-gradient-to-br from-[#404040] to-transparent p-6 rounded-2xl shadow-lg'>
           <div className='absolute inset-px bg-[#212121] rounded-2xl' />
           <div className='flex flex-col gap-5 relative'>
-            {skillsData.map((item, index) => (
-              <SkillBar
-                key={index}
-                name={item.name}
-                percentage={item.percentage}
-              />
-            ))}
+            {isLoading ? (
+              [1, 2, 3, 4].map((_, ind) => {
+                return <ShimmerSkillBar key={ind} />;
+              })
+            ) : personDetail ? (
+              personDetail.skill.map((item, index) => (
+                <SkillBar
+                  key={index}
+                  name={item.name}
+                  percentage={item.percentage}
+                />
+              ))
+            ) : (
+              <p className='text-2xl font-medium text-yellow-400'>
+                No skills details.
+              </p>
+            )}
           </div>
         </div>
       </div>

@@ -47,7 +47,7 @@ function ProjectDetail() {
             </div>
             <img
               className='w-full h-[40vh] rounded-lg'
-              src={`${import.meta.env.VITE_STRAPI_URL}${data.image.url}`}
+              src={`${data.image.url}`}
               alt={data.title}
               loading='lazy'
             />

@@ -9,24 +9,14 @@ import calenderImg from '../assets/calender.svg';
 import downArrowImg from '../assets/downArrow.svg';
 import mailImg from '../assets/mail.svg';
 import phoneImg from '../assets/phone.svg';
+import type { PersonDetails } from '../types/ProfileType';
 
 interface SidebarProps {
   isLoading: boolean;
-  name: string | null;
-  profession: string | null;
-  email: string | null;
-  phone: string | null;
-  birthday: string | null;
+  personDetail: PersonDetails | null;
 }
 
-function Sidebar({
-  isLoading,
-  name,
-  profession,
-  email,
-  phone,
-  birthday,
-}: SidebarProps) {
+function Sidebar({ isLoading, personDetail }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -60,10 +50,12 @@ function Sidebar({
             ) : (
               <>
                 <h1 className='text-stone-300 text-lg md:text-2xl font-medium lg:text-center'>
-                  {name}
+                  {personDetail ? personDetail.name : 'Name not exist.'}
                 </h1>
                 <p className='text-stone-100 bg-[#2b2b2b] text-sm px-4 py-2 rounded-lg'>
-                  {profession}
+                  {personDetail
+                    ? personDetail.profession
+                    : 'Profession not exist.'}
                 </p>
               </>
             )}
@@ -105,8 +97,11 @@ function Sidebar({
                     width={180}
                   />
                 ) : (
-                  <a href={`mailto:${email}`} className='text-stone-100'>
-                    {email}
+                  <a
+                    href={`mailto:${personDetail && personDetail.email}`}
+                    className='text-stone-100'
+                  >
+                    {personDetail ? personDetail.email : 'Email not exist.'}
                   </a>
                 )}
               </div>
@@ -131,8 +126,11 @@ function Sidebar({
                     width={180}
                   />
                 ) : (
-                  <a href={`tel:${phone}`} className='text-stone-100'>
-                    {phone}
+                  <a
+                    href={`tel:${personDetail && personDetail.phone}`}
+                    className='text-stone-100'
+                  >
+                    {personDetail ? personDetail.phone : 'PhoneNo not exist.'}
                   </a>
                 )}
               </div>
@@ -157,7 +155,11 @@ function Sidebar({
                     width={180}
                   />
                 ) : (
-                  <p className='text-stone-100'>{birthday}</p>
+                  <p className='text-stone-100'>
+                    {personDetail
+                      ? personDetail.birthday
+                      : 'Birthday not exist.'}
+                  </p>
                 )}
               </div>
             </div>
