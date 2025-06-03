@@ -47,8 +47,8 @@ function Projects() {
       </ul>
       {isLoading ? (
         <div className='grid grid-cols-autofill-200 gap-5'>
-          {[1, 2, 3, 4].map(() => {
-            return <ShimmerProjectCard />;
+          {[1, 2, 3, 4].map((_, ind) => {
+            return <ShimmerProjectCard key={ind} />;
           })}
         </div>
       ) : data && data.length === 0 ? (
