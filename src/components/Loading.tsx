@@ -1,8 +1,19 @@
+import { Backdrop, CircularProgress } from '@mui/material';
+
 function Loading() {
   return (
-    <h2 className='text-3xl flex m-auto mt-20 items-center font-semibold text-yellow-400'>
-      Loading...
-    </h2>
+    <div className='bg-[#121212] min-h-screen'>
+      <Backdrop
+        sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+        open={true}
+      >
+        <CircularProgress
+          sx={{
+            color: '#ca8a04',
+          }}
+        />
+      </Backdrop>
+    </div>
   );
 }
 
